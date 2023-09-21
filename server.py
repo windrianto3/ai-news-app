@@ -21,33 +21,26 @@ db = connection['Summarizer']
 
 app = Flask(__name__)
 
+def get_recent_report_date():
+    def date_key(date_str):
+        return int(date_str)
+    
+    dates = db.list_collection_names()
+    most_recent_date = max(dates, key=date_key)
+    return most_recent_date
+
+def format_date(date):
+    return datetime.strptime(date, "%Y%m%d").strftime("%B %d, %Y")
+
 @app.route("/status")
 def status():
     return "ALIVE"
 
 @app.route("/")
 def serve():
-    date = _getDate()
-    today_date_str = datetime.now().strftime("%A, %B %d, %Y")
-    
-    collection_list = db.list_collection_names()
-    if date not in collection_list:
-        print("Creating a report")
-        # If date not in DB, create report
-        article_data = generateDailyReport("Technology")
-        today_collection = db[date]
-
-        for article in article_data.items():
-            today_collection.insert_one(
-                {
-                    "title" : article[1]['title'],
-                    "abstract" : article[1]['abstract'],
-                    "url" : article[1]['url'],
-                    "summary" : article[1]['summary']
-                }
-            )
+    most_recent_date = get_recent_report_date()
             
-    cursor = db[date].find()
+    cursor = db[most_recent_date].find()
     data = {}
     for document in cursor:
         url = document['url']
@@ -59,7 +52,7 @@ def serve():
     
     # Article data is returned here.
     #return jsonify(data)
-    return render_template("daily_report.html", articles=data, date=today_date_str)
+    return render_template("daily_report.html", articles=data, date=format_date(most_recent_date))
 
 def convert_date_string(date_str):
     return datetime.strptime(date_str, "%Y%m%d").date().strftime("%Y%m%d")
@@ -72,9 +65,7 @@ def view_daily_report(date):
         report_date = (convert_date_string(date))
         collection_list = db.list_collection_names()
         print(report_date)
-        
-        today_date_str = datetime.now().strftime("%A, %B %d, %Y")
-        
+
         # Check if a report exists for the specified date
         if report_date in collection_list:
             # Render the daily_report.html template with the report data
@@ -87,7 +78,7 @@ def view_daily_report(date):
                 data[url]['abstract'] = document['abstract']
                 data[url]['title'] = document['title']
                 data[url]['url'] = url
-            return render_template("daily_report.html", articles=data, date = today_date_str)
+            return render_template("daily_report.html", articles=data, date = format_date(report_date))
         else:
             # Render an error page if the report doesn't exist
             return render_template("error.html", message="No report available for this date.")
@@ -117,7 +108,7 @@ def generate_daily_report():
             )
 
 # Schedule the function to run daily at 12:00 PM
-schedule.every().day.at("20:16").do(generate_daily_report)
+schedule.every().day.at("09:55:00").do(generate_daily_report)
 
 if __name__ == '__main__':
     # Start the scheduled task in a separate thread
