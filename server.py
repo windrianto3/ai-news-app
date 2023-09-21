@@ -21,6 +21,10 @@ db = connection['Summarizer']
 
 app = Flask(__name__)
 
+@app.route("/status")
+def status():
+    return "ALIVE"
+
 @app.route("/")
 def serve():
     date = _getDate()
@@ -126,7 +130,7 @@ if __name__ == '__main__':
     scheduler_thread.daemon = True
     scheduler_thread.start()
 
-    app.run(host = "0.0.0.0", port=8000, debug=False)
+    #app.run(host = "0.0.0.0", port=8000, debug=False)
 
         
         
