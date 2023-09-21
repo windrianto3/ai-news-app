@@ -12,6 +12,10 @@ dotenv.load_dotenv()
 
 # Get DB instance
 db_str = os.environ.get('MONGO_STR')
+
+print("MongoSTR below")
+print(db_str)
+
 connection = pymongo.MongoClient(db_str)
 db = connection['Summarizer']
 
