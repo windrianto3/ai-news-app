@@ -6,3 +6,4 @@ schedule
 pymongo
 Flask
 gunicorn
+langchain
