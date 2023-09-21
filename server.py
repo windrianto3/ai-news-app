@@ -122,7 +122,7 @@ if __name__ == '__main__':
     scheduler_thread.daemon = True
     scheduler_thread.start()
 
-    app.run(port=5000, debug=False)
+    app.run(host = "0.0.0.0", port=8000, debug=False)
 
         
         

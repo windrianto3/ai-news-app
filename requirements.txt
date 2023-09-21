@@ -1,0 +1,6 @@
+python-dotenv
+openai
+requests
+beautifulsoup4
+schedule
+pymongo
