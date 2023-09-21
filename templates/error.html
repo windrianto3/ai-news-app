@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Oops! Something Went Wrong</title>
+    <style>
+        body {
+            background-color: #FFD700; /* Gold background */
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .error-container {
+            position: relative;
+        }
+
+        .error-text {
+            animation: moveUpDown 5s linear infinite, changeColor 2s linear infinite;
+        }
+
+        @keyframes moveUpDown {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes changeColor {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .rainbow-text {
+            animation: moveUpDown 3s linear infinite, changeColor 2s linear infinite;
+            background: linear-gradient(90deg, violet, indigo, blue, green, yellow, orange, red);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 36px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-text">Oops! Something Went Wrong</h1>
+        <img class="clown-image" src="https://media.istockphoto.com/id/533837393/photo/clown.jpg?s=612x612&w=0&k=20&c=2uitATXPXAq-nNzSYgT1heMsuep3_nSRZqviBAbmhbE=" alt="Clown Image">
+        <p>{{ message }}</p>
+        <p class="rainbow-text">you just found an easter egg</p>
+    </div>
+</body>
+</html>

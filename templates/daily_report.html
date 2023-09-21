@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Report</title>
+    <style>
+        /* Use Georgia font for a clean and organized appearance */
+        body {
+            font-family: Georgia, serif;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        /* Date styles */
+        #date {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        /* Article styles */
+        article {
+            margin: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        article h2 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        article p {
+            font-size: 16px;
+        }
+
+        /* Read more link styles */
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        /* Add more styling as needed */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>The Daily Report</h1>
+        <div id="date">{{ date }}</div>
+    </header>
+    
+    {% for url, article in articles.items() %}
+    <article>
+        <h2>{{ article['title'] }}</h2>
+        <p><i>{{ article['abstract'] }}</i></p>
+        <p>{{ article['summary'] }}</p>
+        <a href="{{ url }}" target="_blank">Read More</a>
+    </article>
+    {% endfor %}
+</body>
+</html>
