@@ -1,5 +1,8 @@
 # ai-news-app
-A news app delivering short summaries of NYT articles published today.
+A news app delivering short summaries of NYT articles published today, powered by New York Times API and OpenAI API. Currently, the app grabs at most 10 articles (or less depending on how many were published today) relating to technology and displays them to the user, 
+  
+Check out a sample deployment at:  
+https://flask-ai-app.azurewebsites.net/
 
 ## Technologies Used
 * New York Times API: used to acquire URLs of news articles published on today's date.  
