@@ -9,7 +9,8 @@ https://flask-ai-app.azurewebsites.net/
 * Python library `requests`: used to obtain the HTML files of news articles using URLs pulled from the New York Times API.  
 * Beautiful Soup 4: used to extract article body text from the HTML files.  
 * OpenAI API: used to summarize article body text.  
-* Flask: used to serve templated HTML containing the news reports to the user.  
+* Flask: used to serve templated HTML containing the news reports to the user.
+* MongoDB: used to store all the daily news feeds in JSON-like format
 * Microsoft Azure: used to host the Flask server persistently.
 
 ## Environment Variables
