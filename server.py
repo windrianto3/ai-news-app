@@ -108,7 +108,7 @@ def generate_daily_report():
             )
 
 # Schedule the function to run daily at 12:00 PM
-schedule.every().day.at("09:55:00").do(generate_daily_report)
+schedule.every().day.at("11:10:00").do(generate_daily_report)
 
 if __name__ == '__main__':
     # Start the scheduled task in a separate thread
