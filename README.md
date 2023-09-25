@@ -1,8 +1,10 @@
 # AI-summarized News Feed
-A news app delivering short summaries of NYT articles published today, powered by New York Times API and OpenAI API. Currently, the app grabs at most 10 articles (or less depending on how many were published today) relating to technology and displays them to the user, 
+A news app delivering short summaries (by AI) of NYT articles published today, powered by New York Times API and OpenAI API. Currently, the app grabs at most 10 articles (or less depending on how many were published today) relating to technology and displays them to the user.
   
 Check out a sample deployment at:  
 https://flask-ai-app.azurewebsites.net/
+
+Each section of the page corresponds to a news article published today, which includes the corresponding title header, abstract, AI-generated summary, and a link to the original article if the reader desires to read more.
 
 ## Technologies Used
 * New York Times API: used to acquire URLs of news articles published on today's date.  
